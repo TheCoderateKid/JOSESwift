@@ -55,7 +55,7 @@ extension ContentEncryptionAlgorithm {
            case .AES256GCM:
                 return 16
             case .AES128GCM:
-                 return 0
+                 return 12
            }
        }
 
