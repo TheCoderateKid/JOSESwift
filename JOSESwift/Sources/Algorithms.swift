@@ -79,7 +79,7 @@ public enum ContentEncryptionAlgorithm: String {
     
     case AES256GCM = "A256GCM"
     
-    case AES128GCM = "AS128GCM"
+    case AES128GCM = "A128GCM"
 }
 
 /// An algorithm for HMAC calculation.
