@@ -43,7 +43,6 @@ fileprivate extension ContentEncryptionAlgorithm {
             return CCAlgorithm(kCCAlgorithmAES)
         case .AES256GCM:
              return CCAlgorithm(kCCAlgorithmAES)
-            
         case .AES128GCM:
              return CCAlgorithm(kCCAlgorithmAES)
         }
@@ -53,12 +52,10 @@ fileprivate extension ContentEncryptionAlgorithm {
         switch self {
         case .A256CBCHS512:
             return key.count == kCCKeySizeAES256
-
         case .A128CBCHS256:
             return key.count == kCCKeySizeAES128
         case .AES256GCM:
             return key.count == kCCKeySizeAES256
-            
         case .AES128GCM:
             return key.count == kCCKeySizeAES128
         }
@@ -158,7 +155,7 @@ enum AESCrypt {
         and initializationVector: Data
     ) throws -> Data {
         switch algorithm {
-        case .A256CBCHS512, .A128CBCHS256, .AES256GCM, .AES128GCM:
+        case .A256CBCHS512, .A128CBCHS256, .AES256GCM:
             guard algorithm.checkAESKeyLength(for: decryptionKey) else {
                 throw AESError.keyLengthNotSatisfied
             }
@@ -179,6 +176,15 @@ enum AESCrypt {
             }
 
             return plaintext
+            
+        case .AES128GCM:
+            print("AESCrypt ::::::: AES128GCM")
+            let ivkey = initializationVector.hexEncodedString()
+            let key = decryptionKey.hexEncodedString()
+            let gcm = GCM(iv: [UInt8](hex: ivkey), mode: .combined)
+            let aes = try! AES(key: [UInt8](hex: key), blockMode: gcm, padding: .noPadding)
+            let cryptText = try! aes.decrypt(Array(cipherText))
+            return Data(cryptText)
         }
     }
 
