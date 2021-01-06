@@ -163,6 +163,7 @@ public struct JWE {
 
         do {
             let decryptedData = try decrypter.decrypt(context)
+            print("decryptedData  \(decryptedData)")
             let compressor = try CompressorFactory.makeCompressor(algorithm: header.compressionAlgorithm)
             return Payload(try compressor.decompress(data: decryptedData))
         } catch JOSESwiftError.decompressionFailed {
