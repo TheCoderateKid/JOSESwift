@@ -55,7 +55,7 @@ struct AESGCMEncryption {
         let keys = try contentEncryptionAlgorithm.retrieveKeys(from: contentEncryptionKey)
         print("AESGCMEncryption :::: keys ::: \(keys)")
         let decryptionKey = keys.encryptionKey
-        print("AESGCMEncryption :::: decryptionKey ::: \(decryptionKey)")
+        print("AESGCMEncryption :::: decryptionKey ::: \(decryptionKey.hexEncodedString())")
         // Decrypt the cipher text with a symmetric decryption key, a symmetric algorithm and the initialization vector,
         // return the plaintext if no error occured.
         let gcm = GCM(iv:  [UInt8](hex: initializationVector.hexEncodedString()), mode: .combined)
