@@ -89,7 +89,7 @@ extension ContentEncryptionAlgorithm {
            case .AES256GCM:
             return (hmacKey: Data(), encryptionKey: inputKey)
            case .AES128GCM:
-            return (inputKey.subdata(in: 0..<16), inputKey.subdata(in: 16..<32))
+            return (hmacKey: Data(), encryptionKey: inputKey)
            }
        }
 
