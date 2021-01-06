@@ -60,7 +60,8 @@ struct AESGCMEncryption {
         // return the plaintext if no error occured.
         let gcm = GCM(iv:  [UInt8](hex: initializationVector.hexEncodedString()), mode: .combined)
         let aes = try AES(key: [UInt8](hex: decryptionKey.hexEncodedString()), blockMode: gcm, padding: .noPadding)
-        let plaintext =  try aes.decrypt([UInt8](hex: ciphertext.hexEncodedString()))
+//        as per cryptoswift the authentication tag needs to be appended to the cipher text
+        let plaintext =  try aes.decrypt([UInt8](hex: authenticationTag.hexEncodedString() + ciphertext.hexEncodedString()))
         print("AESGCMEncryption :::: plaintext ::: \(plaintext)")
         return Data(plaintext)
     }
