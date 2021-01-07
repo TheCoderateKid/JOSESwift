@@ -50,7 +50,7 @@ struct AESGCMEncryption {
         guard contentEncryptionAlgorithm.checkKeyLength(for: contentEncryptionKey) else {
             throw JWEError.keyLengthNotSatisfied
         }
-        print("AESGCMEncryption :::: \(ciphertext)")
+        print("AESGCMEncryption :::: \(ciphertext.base64EncodedString())")
         // Get the two keys for the HMAC and the symmetric encryption.
         let keys = try contentEncryptionAlgorithm.retrieveKeys(from: contentEncryptionKey)
         print("AESGCMEncryption :::: keys ::: \(keys)")
