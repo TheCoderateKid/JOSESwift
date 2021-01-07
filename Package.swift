@@ -7,8 +7,8 @@ let package = Package(
     products: [
         .library(name: "JOSESwift", targets: ["JOSESwift"])
     ],
-//    dependencies: [.package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", .upToNextMinor(from: "1.0.0"))],
+    dependencies: [.package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", .upToNextMinor(from: "1.0.0"))],
     targets: [
-        .target(name: "JOSESwift", dependencies: [], path: "JOSESwift", exclude: [], sources: nil, publicHeadersPath: nil, cSettings: nil, cxxSettings: nil, swiftSettings: nil, linkerSettings: nil)
+        .target(name: "JOSESwift", dependencies: ["CryptoSwift"], path: "JOSESwift", exclude: [], sources: nil, publicHeadersPath: nil, cSettings: nil, cxxSettings: nil, swiftSettings: nil, linkerSettings: nil)
     ],
     swiftLanguageVersions: [.v5])
